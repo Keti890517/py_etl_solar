@@ -14,3 +14,6 @@ def windows_to_wsl_path(path: str) -> str:
         else:
             # Windows, macOS or native Linux, return original path
             return path
+    else:
+        # On Windows or others, just normalize slashes
+        return path.replace('\\', '/')
