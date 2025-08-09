@@ -28,16 +28,16 @@ This project implements a lightweight and reproducible ETL pipeline in Python to
 
 project_root/
 │
-├── main.py                 # script entry point: argument parsing and orchestration
+├── main.py # script entry point: argument parsing and orchestration
 ├── src/
-│   ├── __init__.py
-│   ├── file_utils.py       # file-related utilities (list files, validate filenames)
-│   ├── data_processing.py  # data loading, validation, cleaning logic
-│   ├── aggregation.py      # aggregation logic
-│   └── utils.py            # misc utilities (e.g. windows_to_wsl_path)
+│ ├── init.py
+│ ├── file_utils.py # file-related utilities (list files, validate filenames)
+│ ├── data_processing.py # data loading, validation, cleaning logic
+│ ├── aggregation.py # aggregation logic
+│ └── utils.py # misc utilities (e.g. windows_to_wsl_path)
 └── output/
-    ├── daily_csv/
-    └── aggregates/
+├── daily_csv/
+└── aggregates/
 
 ---
 
@@ -55,6 +55,8 @@ Example:
 
 python main.py --data-dir "C:\Users\User\Downloads\jsons" --input-date 2025-03-10
 Processed daily CSVs will be saved in output/daily_csv/ and the aggregated summary in output/aggregates/aggregates.csv.
+
+---
 
 ## LLM Tool Usage
 
