@@ -12,8 +12,5 @@ def windows_to_wsl_path(path: str) -> str:
             rest = rest.lstrip('\\').replace('\\', '/')
             return f"/mnt/{drive.lower()}/{rest}"
         else:
-            # macOS or native Linux path — normalize slashes only
-            return path.replace('\\', '/')
-    else:
-        # Windows: just normalize slashes
-        return path.replace('\\', '/')
+            # Windows, macOS or native Linux, return original path
+            return path
