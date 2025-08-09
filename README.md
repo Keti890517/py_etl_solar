@@ -26,16 +26,34 @@ This project implements a lightweight and reproducible ETL pipeline in Python to
 
 ## 📁 Project Structure
 
-py_etl_pipeline/
-├── output/
-│ ├── daily_csv/ # Cleaned sensor data for each date
-│ └── aggregates/ # Daily production totals
+project_root/
+│
+├── main.py                 # script entry point: argument parsing and orchestration
 ├── src/
-│ ├── etl.py # Main ETL logic
-│ ├── validators.py # Data validation functions
-│ ├── utils.py # File and datetime helpers
-│ └── config.py # Constants (e.g. valid time window)
-├── main.py # CLI entrypoint
-├── .gitignore
-├── requirements.txt
-└── README.md
+│   ├── __init__.py
+│   ├── file_utils.py       # file-related utilities (list files, validate filenames)
+│   ├── data_processing.py  # data loading, validation, cleaning logic
+│   ├── aggregation.py      # aggregation logic
+│   └── utils.py            # misc utilities (e.g. windows_to_wsl_path)
+└── output/
+    ├── daily_csv/
+    └── aggregates/
+
+## Running the script
+
+Run the ETL pipeline from the command line as follows:
+
+python main.py --data-dir "<PATH_TO_JSON_FILES>" [--input-date YYYY-MM-DD]
+
+--data-dir (required): Windows-style path to the folder containing JSON sensor data files.
+
+--input-date (optional): Specific date to process in YYYY-MM-DD format. If omitted, all data from March 2025 will be processed.
+
+Example:
+
+python main.py --data-dir "C:\Users\User\Downloads\jsons" --input-date 2025-03-10
+Processed daily CSVs will be saved in output/daily_csv/ and the aggregated summary in output/aggregates/aggregates.csv.
+
+## LLM Tool Usage
+
+During this project LLM was used to propose a project structure and generate README, as well as to review & spar during writing the code, as a sparring partner or reviewer was not available, as it would be during a production task. I aimed to implement the outline and structure and use LLM to review.
