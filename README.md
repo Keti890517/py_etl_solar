@@ -26,6 +26,7 @@ This project implements a lightweight and reproducible ETL pipeline in Python to
 
 ## 📁 Project Structure
 
+```
 project_root/
 │
 ├── main.py # script entry point: argument parsing and orchestration
@@ -38,6 +39,7 @@ project_root/
 └── output/
 ├── daily_csv/
 └── aggregates/
+```
 
 ---
 
