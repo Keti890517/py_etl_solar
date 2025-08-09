@@ -1,10 +1,19 @@
-def windows_to_wsl_path(windows_path: str) -> str:
+import os
+
+def windows_to_wsl_path(path: str) -> str:
     """
-    Convert a Windows path like 'C:\\Users\\User\\Downloads\\jsons'
-    to WSL path like '/mnt/c/Users/User/Downloads/jsons'.
-    If already WSL-style, return unchanged.
+    Convert Windows path to WSL path if on WSL/Linux.
+    On macOS or Windows, returns path with normalized slashes.
     """
-    if ':' not in windows_path:
-        return windows_path  # already WSL-style
-    drive, rest = windows_path.split(':')
-    return f"/mnt/{drive.lower()}{rest.replace('\\', '/')}"
+    if os.name == "posix":
+        # On Linux/WSL: convert if looks like Windows path
+        if ':' in path:
+            drive, rest = path.split(':', 1)
+            rest = rest.lstrip('\\').replace('\\', '/')
+            return f"/mnt/{drive.lower()}/{rest}"
+        else:
+            # macOS or native Linux path — normalize slashes only
+            return path.replace('\\', '/')
+    else:
+        # Windows: just normalize slashes
+        return path.replace('\\', '/')
