@@ -47,7 +47,9 @@ project_root/
 
 ## Running the script
 
-Run the ETL pipeline from the command line as follows:
+Before running the script, make sure you have Python 3.7+ installed and install the required packages via: pip install -r requirements.txt
+
+Then run the ETL pipeline from the command line as follows:
 
 python main.py --data-dir "<PATH_TO_JSON_FILES>" [--input-date YYYY-MM-DD]
 
