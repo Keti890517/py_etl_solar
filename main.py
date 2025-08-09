@@ -6,6 +6,7 @@ from src.file_utils import list_valid_json_files, sort_files_chronologically
 from src.data_processing import load_and_validate_json, validate_timestamp, correct_production_rate
 from src.aggregation import aggregate_production_rates
 
+# Define function arguments
 def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
@@ -35,16 +36,16 @@ def main():
 
     for file in json_files:
         full_path = os.path.join(data_dir, file)
-        title_timestamp = file.split('_')[1]
-
+        title_timestamp = file.split('_')[1]  # This is the timestamp in the filename
+    
+        # Check if the file should be processed
         should_open = False
-        if args.input_date:
+        if args.input_date:  # We filter when we have an input date
             input_date = args.input_date.replace('-', '')
             if input_date == title_timestamp[:8]:
                 should_open = True
-        else:
-            if title_timestamp[:6] == "202503":
-                should_open = True
+        else:  # Otherwise, process all files, validator function below filters to March 2025
+            should_open = True
 
         if should_open:
             try:
@@ -59,12 +60,14 @@ def main():
 
             df = correct_production_rate(df)
 
+            # Save the processed DataFrame to CSV
             file_name_csv = f"{title_timestamp[:12]}.csv"
             path = os.path.join(cwd, "output", "daily_csv", file_name_csv)
             os.makedirs(os.path.dirname(path), exist_ok=True)
             df.to_csv(path, index=False)
             print(f"Processed data saved to: {path}")
 
+    # Save aggregated data
     aggregated_df = aggregate_production_rates(os.path.join(cwd, "output", "daily_csv"))
     output_path = os.path.join(cwd, "output", "aggregates", "aggregates.csv")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
