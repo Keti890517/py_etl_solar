@@ -26,18 +26,20 @@ This project implements a lightweight and reproducible ETL pipeline in Python to
 
 ## 📁 Project Structure
 
-  project_root/
-  │
-  ├── main.py                 # script entry point: argument parsing and orchestration
-  ├── src/
-  │   ├── __init__.py
-  │   ├── file_utils.py       # file-related utilities (list files, validate filenames)
-  │   ├── data_processing.py  # data loading, validation, cleaning logic
-  │   ├── aggregation.py      # aggregation logic
-  │   └── utils.py            # misc utilities (e.g. windows_to_wsl_path)
-  └── output/
-      ├── daily_csv/
-      └── aggregates/
+project_root/
+│
+├── main.py                 # script entry point: argument parsing and orchestration
+├── src/
+│   ├── __init__.py
+│   ├── file_utils.py       # file-related utilities (list files, validate filenames)
+│   ├── data_processing.py  # data loading, validation, cleaning logic
+│   ├── aggregation.py      # aggregation logic
+│   └── utils.py            # misc utilities (e.g. windows_to_wsl_path)
+└── output/
+    ├── daily_csv/
+    └── aggregates/
+
+---
 
 ## Running the script
 
